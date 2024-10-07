@@ -23,7 +23,7 @@ export default {
     methods: {
         async scrape() {
             try {
-                const response = await axios.post('/api/scrape', { url: this.url });
+                const response = await axios.post('/api/scrape');
                 this.titles = response.data;
             } catch (error) {
                 console.error(error);
