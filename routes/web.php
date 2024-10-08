@@ -18,4 +18,4 @@ use App\Http\Controllers\ScraperController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/scrape', [ScraperController::class, 'scrape']);
+Route::post('/scrape', [ScraperController::class, 'scrape'])->name('scrape');
