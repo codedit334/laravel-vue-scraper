@@ -15,22 +15,6 @@ class WebScraper
 
     public function scrape()
     {
-        // $crawler = $this->client->request('GET', $url);
-
-        // // Scrape the first two articles
-        // $articles = $crawler->filter('div.article > div.article-info')->slice(0, 2)->each(function ($node) {
-        //     // Scrape title
-        //     $title = $node->filter('a.article-title')->text();
-        
-        //     // Scrape body
-        //     $body = $node->filter('a.article-body')->text();
-        
-        //     return [
-        //         'title' => $title,
-        //         'body' => $body,
-        //     ];
-        // });
-        
         // List of URLs to scrape
         $urls = [
             [
@@ -40,15 +24,29 @@ class WebScraper
                     'title' => 'a.article-title',
                     'body' => 'a.article-body',
                     'a' => 'a',
-                    'img' => 'img',
+                    'img' => 'div.article-image img',
                 ]
+            ]
+        ];
+
+        $coaches = [
+            [
+                'name' => 'Mehdi',
+                'work' => 'Fitness Coach',
+                'image' => 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600'
+                
+            ],
+            [
+                'name' => 'Simo',
+                'work' => 'Basketball Coach',
+                'image' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600'
+                
             ]
         ];
 
         // Scrape data
 $articles = [];
 foreach ($urls as $urlInfo) {
-    // $crawler = $this->client->request('GET', $url);
 
     $crawler = $this->client->request('GET', $urlInfo['url']);
 
@@ -93,12 +91,14 @@ foreach ($urls as $urlInfo) {
             if (preg_match("/this\.src='(.*?)'/", $onerrorAttr, $matches)) {
                 $article['image'] = $matches[1]; // This will give you the fallback URL
             }
+            
+            else{
+                $article['image'] = $imageNode->attr('src'); // This will give you the fallback URL
+            }
             } else {
                 $article['image'] = 'Image not available';
 
             }
-
-            
 
             // Add article to the list
             $articles[] = $article;
