@@ -33,7 +33,7 @@ class WebScraper
             'name' => 'Simo',
             'work' => 'Football Coach',
             'image' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'tags' => ['football,', 'Sport', 'raja', 'widad'],
+            'tags' => ['Football,', 'Stade', 'raja', 'widad', 'Real', 'Sociedad'],
         ]
     ];
 
@@ -42,6 +42,25 @@ class WebScraper
     {
         $this->client = new Client();
         $this->textTagger = $textTagger;
+    }
+
+    public function normalizeTags(array $tags): array {
+        // Create an empty array to hold the normalized tags
+        $normalizedTags = [];
+    
+        // Loop through the input array
+        foreach ($tags as $key => $value) {
+            // Convert each value to lowercase and trim whitespace
+            $normalizedValue = strtolower(trim($value));
+            
+            // Remove punctuation
+            $normalizedValue = preg_replace("/[^\w\s]/", "", $normalizedValue);
+            
+            // Store the normalized value
+            $normalizedTags[$key] = $normalizedValue;
+        }
+    
+        return $normalizedTags;
     }
 
     public function scrape()
@@ -79,16 +98,20 @@ foreach ($this->urls as $urlInfo) {
                 
                 $article['body'] = $bodyNode->text();
                 $article['tags'] = $this->textTagger->generateTags($article['body']);
-                $article['tagstpye'] = gettype($article['tags']);
-                $article['tags'] =json_decode(json_encode($article['tags']), true);
+                $article['tags'] = json_decode(json_encode($article['tags']), true);
+
+                // Loop through the input array
+                $article['tags'] = $this->normalizeTags($article['tags']);
+                
                 // Check for matches and add to article['coaches']
                 foreach ($this->coaches as $coach) {
-                    
+                    $coach['tags'] = $this->normalizeTags($coach['tags']);
                     if (array_intersect($coach['tags'], $article['tags'])) {
                      // Add both tag and name to the article's coaches
                      $article['coaches'][] = [
                          'name' => $coach['name'],
                          'image' => $coach['image'],
+                         'work' => $coach['work'],
                      ];
                  }
              }
