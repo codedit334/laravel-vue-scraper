@@ -21,7 +21,7 @@
                             <div class="coaches-wrapper">
                                 <div v-for="(coach, coachIndex) in article.coaches" :key="coachIndex" class="coach">
                                     <img :src="coach.image" alt="Coach Image" class="coach-image" />
-                                    <p>{{ coach.work }} : {{ coach.name }}</p>
+                                    <p><b>{{ coach.work }} :</b> {{ coach.name }}</p>
                                 </div>
                             </div>
                         </div>
