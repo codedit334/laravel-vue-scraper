@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Web Scraper</h1>
+        <h1>Web Scraper - AI Text Analysis</h1>
         <button @click="scrape">News</button>
         
         <div class="scraper">

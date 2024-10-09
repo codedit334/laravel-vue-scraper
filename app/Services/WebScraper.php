@@ -33,7 +33,13 @@ class WebScraper
             'name' => 'Simo',
             'work' => 'Football Coach',
             'image' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'tags' => ['Football,', 'Stade', 'raja', 'widad', 'Real', 'Sociedad'],
+            'tags' => ['Football,', 'Stade', 'raja', 'widad', 'Real', 'Sociedad', 'soccer'],
+        ],
+        [
+            'name' => 'Ghizlane',
+            'work' => 'Cyclism Coach',
+            'image' => 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+            'tags' => ['Bike', 'Cyclisme', 'Cyclist'],
         ]
     ];
 
@@ -154,5 +160,22 @@ foreach ($this->urls as $urlInfo) {
 
         // Optionally, return or process the scraped data
         return $articles;
+    }
+
+    public function scrapeActivities()
+    {
+        // Create a new Goutte client instance
+        $client = new Client();
+        
+        // Request the target URL
+        $crawler = $client->request('GET', 'https://sportma.ma/activities/all');
+        
+        // Extract the entire HTML content of the page
+        $pageContent = $crawler->html();
+
+        // Return the content or process it as needed
+        return response()->json([
+            'content' => $pageContent
+        ]);
     }
 }
