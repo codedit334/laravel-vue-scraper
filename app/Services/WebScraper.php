@@ -9,6 +9,35 @@ class WebScraper
 {
     protected $client;
 
+    public $urls = [
+        [
+            'url' => 'https://lematin.ma/sports',
+            'urlData' => [
+                'CSSSelector' => 'div.article',
+                'title' => 'a.article-title',
+                'body' => 'a.article-body',
+                'a' => 'a',
+                'img' => 'div.article-image img',
+            ]
+        ]
+    ];
+
+    public $coaches = [
+        [
+            'name' => 'Mehdi',
+            'work' => 'Fitness Coach',
+            'image' => 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'tags'  => ['Fitness', 'Gym'],
+        ],
+        [
+            'name' => 'Simo',
+            'work' => 'Football Coach',
+            'image' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'tags' => ['football,', 'Sport', 'raja', 'widad'],
+        ]
+    ];
+
+
     public function __construct(TextTagger $textTagger)
     {
         $this->client = new Client();
@@ -18,37 +47,10 @@ class WebScraper
     public function scrape()
     {
         // List of URLs to scrape
-        $urls = [
-            [
-                'url' => 'https://lematin.ma/sports',
-                'urlData' => [
-                    'CSSSelector' => 'div.article',
-                    'title' => 'a.article-title',
-                    'body' => 'a.article-body',
-                    'a' => 'a',
-                    'img' => 'div.article-image img',
-                ]
-            ]
-        ];
-
-        $coaches = [
-            [
-                'name' => 'Mehdi',
-                'work' => 'Fitness Coach',
-                'image' => 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600'
-                
-            ],
-            [
-                'name' => 'Simo',
-                'work' => 'Basketball Coach',
-                'image' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600'
-                
-            ]
-        ];
-
+        
         // Scrape data
 $articles = [];
-foreach ($urls as $urlInfo) {
+foreach ($this->urls as $urlInfo) {
 
     $crawler = $this->client->request('GET', $urlInfo['url']);
 
@@ -67,12 +69,29 @@ foreach ($urls as $urlInfo) {
                 $article['title'] = 'Title not available';
             }
 
-            // Check for body
+            // Check for body and coaches
+            // Initialize article coaches as an empty array
+            $article['coaches'] = [];
+
+            
             $bodyNode = $node->filter($urlInfo['urlData']['body']);
             if ($bodyNode->count() > 0) {
                 
                 $article['body'] = $bodyNode->text();
                 $article['tags'] = $this->textTagger->generateTags($article['body']);
+                $article['tagstpye'] = gettype($article['tags']);
+                $article['tags'] =json_decode(json_encode($article['tags']), true);
+                // Check for matches and add to article['coaches']
+                foreach ($this->coaches as $coach) {
+                    
+                    if (array_intersect($coach['tags'], $article['tags'])) {
+                     // Add both tag and name to the article's coaches
+                     $article['coaches'][] = [
+                         'name' => $coach['name'],
+                         'image' => $coach['image'],
+                     ];
+                 }
+             }
             } else {
                 $article['body'] = 'Body not available';
             }
