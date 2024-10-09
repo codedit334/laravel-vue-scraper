@@ -3,14 +3,16 @@
 namespace App\Services;
 
 use Goutte\Client;
+use App\Services\TextTagger;
 
 class WebScraper
 {
     protected $client;
 
-    public function __construct()
+    public function __construct(TextTagger $textTagger)
     {
         $this->client = new Client();
+        $this->textTagger = $textTagger;
     }
 
     public function scrape()
@@ -68,7 +70,9 @@ foreach ($urls as $urlInfo) {
             // Check for body
             $bodyNode = $node->filter($urlInfo['urlData']['body']);
             if ($bodyNode->count() > 0) {
+                
                 $article['body'] = $bodyNode->text();
+                $article['tags'] = $this->textTagger->generateTags($article['body']);
             } else {
                 $article['body'] = 'Body not available';
             }

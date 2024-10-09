@@ -18,12 +18,6 @@ class ScraperController extends Controller
     public function scrape(Request $request)
     {    
         $data = [];
-
-        // foreach ($urls as $url) {
-        //     $scrapedData = $this->scraper->scrape($url);
-        //     $data[] = $scrapedData; // Add the scraped data to the $data array
-        // }
-        
         // Scrape data
         $data = $this->scraper->scrape();
         
