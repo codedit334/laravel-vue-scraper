@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScraperController;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 /*
@@ -20,4 +21,6 @@ Route::get('/', function () {
 });
 Route::post('/scrape', [ScraperController::class, 'scrape'])->name('scrape');
 Route::get('/scrape-activities', [ScraperController::class, 'scrapeActivities']);
-Route::get('/sportma', [SportmaController::class, 'show'])->name('sportma');
+Route::get('/sportma', [SportmaController::class, 'show'])->name('sportma');use App\Http\Controllers\Auth\RegisterController;
+
+Route::post('/register', [RegisterController::class, 'register']);
