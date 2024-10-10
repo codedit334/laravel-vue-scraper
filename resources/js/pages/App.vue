@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <Navbar />
-    <Sportma />
-    <Scraper />
+    <Navbar/>
+    <router-view></router-view> <!-- Vue Router View -->
   </div>
 </template>
 

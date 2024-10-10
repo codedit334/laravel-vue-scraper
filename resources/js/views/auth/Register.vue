@@ -39,6 +39,7 @@
 import axios from 'axios';
 
 export default {
+  name: 'Register',
   data() {
     return {
       form: {
@@ -83,6 +84,7 @@ export default {
 .register-container {
   max-width: 400px;
   margin: auto;
+  margin-top: 50px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;

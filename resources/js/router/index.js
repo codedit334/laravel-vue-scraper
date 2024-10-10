@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
-// import Home from '../views/Home.vue';
-// import About from '../views/About.vue';
+import Home from '../pages/App.vue';
 import Sportma from '../pages/Sportma.vue';
 import Register from '../views/auth/Register.vue';
+import Scraper from '../components/Scraper.vue';
 
 const routes = [
-//   { path: '/', component: Home },
-  { path: '/register', component: Register },
-  { path: '/sportma', component: Sportma }
+  { path: '/', component: Home },
+  { path: '/register', name: 'register', component: Register },
+  { path: '/sportma', component: Sportma },
+  { path: '/scrape', component: Scraper }
 ];
 
 const router = createRouter({

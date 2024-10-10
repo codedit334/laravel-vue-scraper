@@ -13,13 +13,12 @@
 
     <!-- Styles -->
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
 </head>
 
 <body>
     <div id="app">
-        <scraper></scraper>
     </div>
-    @vite('resources/js/app.js')
 </body>
 
 </html>

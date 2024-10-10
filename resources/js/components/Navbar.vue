@@ -4,9 +4,16 @@
       <div class="logo">
         <h1>Sportma Remastered</h1>
       </div>
+      <div class="nav-wrapper" style="display: flex; align-items: center; gap: 60px ">
+      <div class="nav-links">
+        <router-link to="/sportma">Sportma</router-link>
+        <router-link to="/scrape">News</router-link>
+      </div>
       <div class="nav-buttons">
         <router-link to="/login" class="button">Login</router-link>
         <router-link to="/register" class="button">Register</router-link>
+      </div>
+
       </div>
     </div>
   </nav>
@@ -40,6 +47,27 @@ export default {
 .nav-buttons {
   display: flex;
   gap: 10px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  color: white; /* White text */
+  text-decoration: none; /* Removes underline */
+
+}
+
+.nav-links a {
+  color: #FF8200;/* White text */
+  text-decoration: none; /* Removes underline */
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: orange  !important;/* White text */
+  text-decoration: underline; /* Underlines when hovered */
 }
 
 .button {
