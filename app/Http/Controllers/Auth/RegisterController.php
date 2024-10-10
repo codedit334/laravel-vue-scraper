@@ -9,6 +9,11 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
+    
+    public function show(){
+        
+    }
+    
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [

@@ -23,5 +23,6 @@ Route::post('/scrape', [ScraperController::class, 'scrape'])->name('scrape');
 Route::get('/scrape-activities', [ScraperController::class, 'scrapeActivities']);
 Route::get('/sportma', [SportmaController::class, 'show'])->name('sportma');
 
-Route::get('/register', [RegisterController::class, 'register']);
+
+Route::view('/register', 'auth.register'); 
 Route::post('/register', [RegisterController::class, 'register']);
