@@ -21,6 +21,6 @@ Route::get('/', function () {
 });
 Route::post('/scrape', [ScraperController::class, 'scrape'])->name('scrape');
 Route::get('/scrape-activities', [ScraperController::class, 'scrapeActivities']);
-Route::get('/sportma', [SportmaController::class, 'show'])->name('sportma');use App\Http\Controllers\Auth\RegisterController;
+Route::get('/sportma', [SportmaController::class, 'show'])->name('sportma');
 
 Route::post('/register', [RegisterController::class, 'register']);
