@@ -20,6 +20,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
+            'interests' => 'nullable|string', // Add interests validation
         ]);
 
         if ($validator->fails()) {
@@ -30,6 +31,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'interests' => $request->interests, // Save interests
         ]);
 
         return response()->json(['message' => 'Registration successful.'], 201);
