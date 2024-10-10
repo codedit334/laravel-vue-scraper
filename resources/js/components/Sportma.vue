@@ -1,35 +1,72 @@
 <template>
-  <div>
-    <h1>Scraped Activities</h1>
-    <div v-html="scrapedContent"></div>
-  </div>
+    <div class="sportma-page">
+        <h1>Sportma Activities</h1>
+        <div class="cards-container">
+            <!-- Loop through the activities array and display a card for each activity -->
+            <card-component
+                v-for="(activity, index) in activities"
+                :key="index"
+                :image-src="activity.imageSrc"
+                :title="activity.title"
+                :price="activity.price"
+            />
+        </div>
+    </div>
 </template>
 
 <script>
-import axios from 'axios';
+import SportmaCard from "./SportmaCard.vue"; // Import the Card component
 
 export default {
-  data() {
-    return {
-      scrapedContent: ''
-    };
-  },
-  mounted() {
-    this.fetchScrapedData();
-    console.log(this.scrapedContent)
-  },
-  methods: {
-    fetchScrapedData() {
-      axios.get('/scrape-activities')
-        .then(response => {
-          this.scrapedContent = response.data.original.content;
-          console.log('Scraped content:', this.scrapedContent)
-          console.log('Scraped data:', response.data);
-        })
-        .catch(error => {
-          console.error('Error fetching scraped data:', error);
-        });
-    }
-  }
+    components: {
+        CardComponent: SportmaCard, // Register the Card component
+    },
+    data() {
+        return {
+            // An array of activities with data for the cards
+            activities: [
+                {
+                    imageSrc:
+                        "https://brandingo.net/storage/images/FLUlmnMHkeFtXjDZAVuFMd82O9BxiNKrcGEo4D0L.jpg",
+                    title: "Allo Bike: Cours d'apprentissage",
+                    price: "200DH",
+                },
+                {
+                    imageSrc:
+                        "https://brandingo.net/storage/images/8r2X6MuJk2hcB73TA1Y8fLxN2ZTnQljig8VBW5UH.jpg",
+                    title: "Bolt Fitness",
+                    price: "50.00 DH",
+                },
+                {
+                    imageSrc:
+                        "https://brandingo.net/storage/images/0I513iWxjeeTrq0sxZxo8uYxjA27wLkamCPb1rRk.jpg",
+                    title: "K Boxing Club",
+                    price: "25.00 DH",
+                },
+                 {
+                    imageSrc:
+                        "https://brandingo.net/storage/images/B8y0CCIPRtumfQyoIhyCcF81hgBdsf60tRXP6Ycs.jpg",
+                    title: "WeFoot Terrain 5vs5 ( T4 )",
+                    price: "300.00 DH",
+                },
+            ],
+        };
+    },
 };
 </script>
+
+<style scoped>
+.sportma-page {
+    padding: 20px;
+}
+
+.cards-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.card {
+    flex: 1 1 300px;
+}
+</style>
