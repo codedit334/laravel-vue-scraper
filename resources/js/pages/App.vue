@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Scraper from './Scraper.vue';
+import Scraper from '../components/Scraper.vue';
 import Sportma from './Sportma.vue';
 
 export default {

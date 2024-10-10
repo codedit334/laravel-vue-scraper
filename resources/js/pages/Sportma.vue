@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import SportmaCard from "./SportmaCard.vue"; // Import the Card component
+import SportmaCard from "../components/SportmaCard.vue"; // Import the Card component
 
 export default {
     components: {
@@ -62,11 +62,14 @@ export default {
 
 .cards-container {
     display: flex;
-    gap: 20px;
-    justify-content: space-between;
+    flex-wrap: wrap;  /* Allows wrapping to the next line */
+    gap: 20px;        /* Space between cards */
+    justify-content: space-between;  /* Aligns cards to the start */
 }
 
 .card {
-    flex: 1 1 300px;
+    flex: 0 1 350px;  /* Prevents the card from growing, keeps a base width of 300px */
+    max-width: 350px; /* Ensures cards do not grow beyond this width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 </style>
