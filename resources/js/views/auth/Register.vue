@@ -27,6 +27,16 @@
         />
       </div>
 
+      <div class="form-group">
+        <label for="interests">Interests</label>
+        <input
+          type="text"
+          id="interests"
+          v-model="form.interests"
+          placeholder="Enter your interests"
+        />
+      </div>
+
       <button type="submit" class="button">Register</button>
 
       <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
@@ -47,6 +57,7 @@ export default {
         email: '',
         password: '',
         password_confirmation: '',
+        interests: '', // Add interests here
       },
       errorMessage: '',
       successMessage: '',
@@ -65,6 +76,7 @@ export default {
           email: '',
           password: '',
           password_confirmation: '',
+          interests: '', // Reset interests field
         };
       } catch (error) {
         if (error.response && error.response.data.errors) {
