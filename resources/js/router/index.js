@@ -5,7 +5,7 @@ import Register from '../views/auth/Register.vue';
 import Scraper from '../components/Scraper.vue';
 
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', component: Sportma },
   { path: '/register', name: 'register', component: Register },
   { path: '/sportma', component: Sportma },
   { path: '/scrape', component: Scraper }
