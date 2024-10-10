@@ -57,6 +57,12 @@ class WebScraper
             'work' => 'Cyclism Coach',
             'image' => 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             'tags' => ['Bike', 'Cyclisme', 'Cyclist'],
+        ],
+        [
+            'name' => 'Samir',
+            'work' => 'Tennis Coach',
+            'image' => 'https://images.pexels.com/photos/28847134/pexels-photo-28847134/free-photo-of-young-man-sitting-outdoors-in-urban-setting.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'tags' => ['tennis'],
         ]
     ];
 

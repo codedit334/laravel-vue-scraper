@@ -1,18 +1,20 @@
 <template>
   <div id="app">
-    <h1>Welcome to Your Vue 3 App!</h1>
+    <Navbar />
     <Sportma />
     <Scraper />
   </div>
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue';
 import Scraper from '../components/Scraper.vue';
 import Sportma from './Sportma.vue';
 
 export default {
   name: 'App',
   components: {
+    Navbar,
     Scraper,
     Sportma
     // Register your components here if needed
@@ -21,9 +23,13 @@ export default {
 </script>
 
 <style scoped>
+body {
+  margin: 0;
+  padding: 0;
+
+}
 #app {
   text-align: center;
-  margin-top: 50px;
 }
 
 h1 {

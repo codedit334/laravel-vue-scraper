@@ -69,6 +69,10 @@ export default {
   align-items: center;
 }
 
+h1 {
+  font-family: 'Roboto', sans-serif;
+}
+
 .articles-wrapper {
   width: 100%;
   display: flex;

@@ -59,7 +59,9 @@ export default {
 .sportma-page {
     padding: 20px;
 }
-
+.sportma-page h1 {
+    font-family: 'Roboto', sans-serif;
+}
 .cards-container {
     display: flex;
     flex-wrap: wrap;  /* Allows wrapping to the next line */
