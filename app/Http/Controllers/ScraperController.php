@@ -24,4 +24,14 @@ class ScraperController extends Controller
         // Return the data as a JSON response
         return response()->json($data);
     }
+
+    public function scrapeActivities(Request $request)
+    {
+        $data = [];
+        // Scrape data
+        $data = $this->scraper->scrapeActivities();
+        
+        // Return the data as a JSON response
+        return response()->json($data);
+    }
 }

@@ -1,18 +1,20 @@
 <template>
   <div id="app">
     <h1>Welcome to Your Vue 3 App!</h1>
-    <Scraper /> 
-    
+    <Sportma />
+    <Scraper />
   </div>
 </template>
 
 <script>
 import Scraper from './Scraper.vue';
+import Sportma from './Sportma.vue';
 
 export default {
   name: 'App',
   components: {
-    Scraper
+    Scraper,
+    Sportma
     // Register your components here if needed
   },
 };

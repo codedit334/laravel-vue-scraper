@@ -9,6 +9,23 @@ class WebScraper
 {
     protected $client;
 
+    public function scrapeActivities()
+    {
+        // Create a new Goutte client instance
+        $client = new Client();
+        
+        // Request the target URL
+        $crawler = $client->request('GET', 'https://sportma.ma/activities/all');
+        
+        // Extract the entire HTML content of the page
+        $pageContent = $crawler->html();
+
+        // Return the content or process it as needed
+        return response()->json([
+            'content' => $pageContent
+        ]);
+    }
+
     public $urls = [
         [
             'url' => 'https://lematin.ma/sports',
@@ -152,6 +169,7 @@ foreach ($this->urls as $urlInfo) {
 
             }
 
+            $article['debug'] = $this->scrapeActivities();
             // Add article to the list
             $articles[] = $article;
         }
@@ -160,22 +178,5 @@ foreach ($this->urls as $urlInfo) {
 
         // Optionally, return or process the scraped data
         return $articles;
-    }
-
-    public function scrapeActivities()
-    {
-        // Create a new Goutte client instance
-        $client = new Client();
-        
-        // Request the target URL
-        $crawler = $client->request('GET', 'https://sportma.ma/activities/all');
-        
-        // Extract the entire HTML content of the page
-        $pageContent = $crawler->html();
-
-        // Return the content or process it as needed
-        return response()->json([
-            'content' => $pageContent
-        ]);
     }
 }
