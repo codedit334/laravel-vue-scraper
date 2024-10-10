@@ -19,10 +19,10 @@ use App\Http\Controllers\Auth\RegisterController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/{any}', function () {
+    return view('welcome'); // or whatever view you use for Vue
+})->where('any', '.*');
+
 Route::post('/scrape', [ScraperController::class, 'scrape'])->name('scrape');
-Route::get('/scrape-activities', [ScraperController::class, 'scrapeActivities']);
-Route::get('/sportma', [SportmaController::class, 'show'])->name('sportma');
-
-
-Route::view('/register', 'auth.register'); 
 Route::post('/register', [RegisterController::class, 'register']);
