@@ -1,10 +1,6 @@
 <template>
     <div>
-        <h1>Web Scraper - AI Text Analysis</h1>
-        <button @click="scrape">News</button>
-
         <div class="scraper">
-            <h1>News Articles</h1>
             <div v-if="articles.length === 0 && !loading">No articles found.</div>
             <div v-if="loading">Loading...</div>
             <div v-else>
@@ -47,6 +43,9 @@ export default {
             loading: false,
         };
     },
+    mounted() {
+        this.scrape();
+    },
     methods: {
         async scrape() {
             this.loading = true;
@@ -69,6 +68,7 @@ export default {
 <style scoped>
 .scraper {
     padding: 20px;
+    margin-top: 35px;
     display: flex;
     flex-direction: column;
     align-items: center;
