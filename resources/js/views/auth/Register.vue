@@ -56,11 +56,15 @@
                         >
                     </template>
                 </multiselect>
-                <pre class="language-json">
-                    <code v-for="(item, index) in form.interests" :key="index">
-                      {{ item.name }}
-                    </code>
-                </pre>
+                <div class="tags-container">
+                    <span
+                        v-for="(item, index) in form.interests"
+                        :key="index"
+                        class="tag"
+                    >
+                        {{ item.name }}
+                    </span>
+                </div>
             </div>
 
             <button type="submit" class="button">Register</button>
@@ -87,18 +91,18 @@ export default {
     data() {
         return {
             options: [
-                { name: "Adonis" },
-                { name: "Rails" },
-                { name: "Sinatra" },
-                { name: "Laravel" },
-                { name: "Phoenix" },
+                { name: "Football" },
+                { name: "Basketball" },
+                { name: "Fitness" },
+                { name: "Cycling" },
+                { name: "Tennis" },
             ],
             form: {
                 name: "",
                 email: "",
                 password: "",
                 password_confirmation: "",
-                interests: [], 
+                interests: [],
             },
             errorMessage: "",
             successMessage: "",
@@ -202,5 +206,21 @@ input {
 .success {
     color: green;
     margin-top: 10px;
+}
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 33px;
+}
+
+.tag {
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+    padding: 2px 8px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 12.5px;
 }
 </style>
