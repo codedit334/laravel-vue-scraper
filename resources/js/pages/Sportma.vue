@@ -37,7 +37,6 @@ export default {
             try {
                 const response = await axios.get("/api/activities"); // Adjust this URL to your API endpoint
                 
-                console.log("fetching activities data", response.data);
                 
                 this.activities = response.data.activities;
             } catch (err) {

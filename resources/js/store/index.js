@@ -23,15 +23,13 @@ export default createStore({
   actions: {
     async login({ commit }, credentials) {
       commit('clearAuthData');
-      console.log('store credentials',credentials);
       const response = await axios.post('/api/login', credentials);
       commit('setToken', response.data.token);
       commit('setUser', response.data.user);
     },
     async logout({ commit }) {
       try {
-        const response = await axios.post('/api/logout');
-        console.log(response.data); // Log the JSON response
+        await axios.post('/api/logout');
         commit('clearAuthData');
       } catch (error) {
         console.error('Logout error:', error.response ? error.response.data : error.message);

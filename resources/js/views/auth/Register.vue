@@ -134,7 +134,6 @@ export default {
 
                 // Make sure to send the form data to the correct endpoint
                 const response = await axios.post("/api/register", this.form);
-                console.log("Response Data:", response.data);
 
                 this.successMessage = response.data.message;
 

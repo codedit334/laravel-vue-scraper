@@ -16,8 +16,6 @@ class LoginController extends Controller
         // If a token is provided, attempt to retrieve the user based on the token
     if (empty($credentials['password']) && !empty($token)) {
         try {
-            // Attempt to authenticate using the token
-            // $user = Auth::user(); 
             $user = \Laravel\Sanctum\PersonalAccessToken::findToken($token)->tokenable;
 
             return response()->json([

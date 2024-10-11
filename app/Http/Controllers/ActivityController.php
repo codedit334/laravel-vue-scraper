@@ -38,16 +38,9 @@ class ActivityController extends Controller
             ],
         ];
 
-        // Check if user is authenticated
-        // $user = $request->user(); // Assuming the user is authenticated
         $user = Auth::user(); // Assuming the user is authenticated
 
         if ($user) {
-            
-            // log the user details
-            // dd($user);
-            
-            
             // User is logged in, score and sort activities based on interests
             $userInterests = json_decode($user->interests);
 
