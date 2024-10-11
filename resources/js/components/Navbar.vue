@@ -59,6 +59,22 @@ export default {
     align-items: center;
 }
 
+.nav-links {
+  display: flex;
+  gap: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-links a:hover {
+  color: #f1f1f1;
+}
+
 .logo h1 {
     margin: 0;
     font-size: 24px;
