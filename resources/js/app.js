@@ -3,6 +3,10 @@ import { createApp } from 'vue';
 import App from './pages/App.vue'; // Adjust the import based on your component structure
 // import Register from './views/auth/Register.vue';
 import router from './router';
+import axios from 'axios';
+
+
+axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
 
 const app = createApp(App);
 
