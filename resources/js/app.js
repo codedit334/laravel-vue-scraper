@@ -10,6 +10,8 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem(
 
 const app = createApp(App);
 
+store.dispatch('tryAutoLogin');
+
 app.use(store);
 app.use(router);
 app.mount('#app');

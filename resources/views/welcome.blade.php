@@ -10,7 +10,6 @@
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/vue-multiselect"></script>
     <link rel="stylesheet" href="https://unpkg.com/vue-multiselect/dist/vue-multiselect.min.css">
     <!-- Styles -->
     @vite('resources/css/app.css')

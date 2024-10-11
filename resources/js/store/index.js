@@ -34,6 +34,16 @@ export default createStore({
       } catch (error) {
         console.error('Logout error:', error.response ? error.response.data : error.message);
       }
+    },tryAutoLogin({ commit }) {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        return;
+      }
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      commit('setToken', token);
+      axios.get('/api/user').then(response => {
+        commit('setUser', response.data);
+      });
     },
     async getUser({ commit }) {
       const response = await axios.get('/api/user');

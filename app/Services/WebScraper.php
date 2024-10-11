@@ -33,7 +33,7 @@ class WebScraper
             'name' => 'Simo',
             'work' => 'Football Coach',
             'image' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'tags' => ['Football,', 'Stade', 'raja', 'wydad', 'WAC', 'widad', 'Real', 'Sociedad', 'soccer'],
+            'tags' => ['Football,', 'Stade', 'raja', 'wydad', 'WAC', 'widad', 'Real', 'Sociedad', 'soccer', 'fifa'],
         ],
         [
             'name' => 'Ghizlane',
