@@ -29,4 +29,4 @@ Route::post('/scrape', [ScraperController::class, 'scrape'])->name('scrape');
 Route::post('/api/register', [RegisterController::class, 'register']);
 
 Route::post('/api/login', [LoginController::class, 'login']);
-Route::middleware('auth:sanctum')->post('logout', [LoginController::class, 'logout']);
+Route::middleware('auth:sanctum')->post('/api/logout', [LoginController::class, 'logout']);

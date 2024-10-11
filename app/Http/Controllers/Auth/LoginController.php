@@ -26,8 +26,14 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request)
-{
-    $request->user()->currentAccessToken()->delete();
-    return response()->json(['message' => 'Successfully logged out.']);
-}
+    {
+        // Revoke the user's current session
+        $request->user()->tokens()->delete();
+    
+        // Store the message in the session
+        $request->session()->flash('message', 'Successfully logged out.');
+    
+        // Redirect to the home page
+        return redirect('/');
+    }
 }
