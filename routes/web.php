@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScraperController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 /*
@@ -27,5 +28,5 @@ Route::get('/{any}', function () {
 Route::post('/scrape', [ScraperController::class, 'scrape'])->name('scrape');
 Route::post('/api/register', [RegisterController::class, 'register']);
 
-Route::post('/login', [LoginController::class, 'login']);
+Route::post('/api/login', [LoginController::class, 'login']);
 Route::middleware('auth:sanctum')->post('logout', [LoginController::class, 'logout']);
