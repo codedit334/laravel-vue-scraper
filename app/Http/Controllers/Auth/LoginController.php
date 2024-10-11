@@ -11,10 +11,27 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
+        $token = $request->input('token'); 
+        
+        // If a token is provided, attempt to retrieve the user based on the token
+    if (empty($credentials['password']) && !empty($token)) {
+        try {
+            // Attempt to authenticate using the token
+            // $user = Auth::user(); 
+            $user = \Laravel\Sanctum\PersonalAccessToken::findToken($token)->tokenable;
 
+            return response()->json([
+                'user' => $user,
+                'token' => $token,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Invalid token.'], 401);
+        }
+    }
+    
         if (Auth::attempt($credentials)) {
             $user = $request->user();
-            $token = $user->createToken('token-name')->plainTextToken;
+            $token = $user->createToken('Sportma')->plainTextToken;
 
             return response()->json([
                 'user' => $user,

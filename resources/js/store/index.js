@@ -22,6 +22,8 @@ export default createStore({
   },
   actions: {
     async login({ commit }, credentials) {
+      commit('clearAuthData');
+      console.log('store credentials',credentials);
       const response = await axios.post('/api/login', credentials);
       commit('setToken', response.data.token);
       commit('setUser', response.data.user);

@@ -13,6 +13,23 @@
             </div>
 
             <div class="form-group">
+                <label for="gender">Gender</label>
+                <select
+                    id="gender"
+                    v-model="form.gender"
+                    class="custom-select"
+                    required
+                >
+                    <option value="" disabled selected>
+                        Select your gender
+                    </option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="password">Password</label>
                 <input
                     type="password"
@@ -99,6 +116,7 @@ export default {
             form: {
                 name: "",
                 email: "",
+                gender: "",
                 password: "",
                 password_confirmation: "",
                 interests: [],
@@ -106,12 +124,6 @@ export default {
             errorMessage: "",
             successMessage: "",
         };
-    },
-    mounted() {
-        // Set the CSRF token for Axios globally
-        axios.defaults.headers.common["X-CSRF-TOKEN"] = document
-            .querySelector('meta[name="csrf-token"]')
-            .getAttribute("content");
     },
     methods: {
         async register() {
@@ -121,14 +133,25 @@ export default {
 
                 // Make sure to send the form data to the correct endpoint
                 const response = await axios.post("/api/register", this.form);
+                console.log("Response Data:", response.data);
 
                 this.successMessage = response.data.message;
+
+                // Dispatch login action
+                this.$store.dispatch("login", {
+                    user: response.data.user,
+                    token: response.data.token,
+                });
+                
+                // Redirect to the home page
+                this.$router.push('/');
                 this.form = {
                     name: "",
                     email: "",
+                    gender: "",
                     password: "",
                     password_confirmation: "",
-                    interests: [], // Reset the interests field
+                    interests: [],
                 };
             } catch (error) {
                 if (error.response && error.response.data.errors) {
@@ -221,5 +244,18 @@ input {
     display: flex;
     align-items: center;
     font-size: 12.5px;
+}
+.custom-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.custom-select:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none; /* Remove outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue shadow on focus */
 }
 </style>

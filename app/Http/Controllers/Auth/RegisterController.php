@@ -15,7 +15,8 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
-            'interests' => 'nullable|array', // Add interests validation
+            'gender' => 'required|string|max:255',
+            'interests' => 'required|array', // Add interests validation
         ]);
 
         if ($validator->fails()) {
@@ -26,9 +27,18 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'gender' => $request->gender,
             'interests' => json_encode($request->interests), // Store interests as JSON
         ]);
 
-        return response()->json(['message' => 'Registration successful.'], 201);
+            // Create a new token for the user
+        $token = $user->createToken('Sportma')->plainTextToken;
+
+        // Return the token and redirect the user
+        return response()->json([
+            'message' => 'Successfully registered and logged in.',
+            'token' => $token,
+            'user' => $user,
+        ]);
     }
 }
