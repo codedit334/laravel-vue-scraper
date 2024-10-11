@@ -11,7 +11,7 @@ class ActivityController extends Controller
     public function getOrderedActivities(Request $request)
     {
         // Define standard activity cards
-        $activities = [
+        return $activities = [
             [
                 'imageSrc' => "https://brandingo.net/storage/images/FLUlmnMHkeFtXjDZAVuFMd82O9BxiNKrcGEo4D0L.jpg",
                 'title' => "Allo Bike: Cours d'apprentissage",

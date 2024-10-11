@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScraperController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ActivityController;
 
 
 /*
@@ -32,3 +33,4 @@ Route::post('/api/login', [LoginController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/api/logout', [LoginController::class, 'logout']);
 
 Route::get('/api/activities', [ActivityController::class, 'getOrderedActivities']);
+Route::get('/activities', [ActivityController::class, 'getOrderedActivities']);

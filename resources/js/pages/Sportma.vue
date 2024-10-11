@@ -29,20 +29,25 @@ export default {
             error: null,
         };
     },
-     created() {
-    this.fetchActivities();
-  },methods: {
-    async fetchActivities() {
-      try {
-        const response = await axios.get('/api/activities'); // Adjust this URL to your API endpoint
-        this.activities = response.data.activities;
-      } catch (err) {
-        this.error = 'Failed to load activities. Please try again later.';
-      } finally {
-        this.loading = false;
-      }
+    created() {
+        this.fetchActivities();
     },
-  },
+    methods: {
+        async fetchActivities() {
+            try {
+                const response = await axios.get("/api/activities"); // Adjust this URL to your API endpoint
+                
+                console.log("fetching activities data", response.data);
+                
+                this.activities = response.data;
+            } catch (err) {
+                this.error =
+                    "Failed to load activities. Please try again later.";
+            } finally {
+                this.loading = false;
+            }
+        },
+    },
 };
 </script>
 
