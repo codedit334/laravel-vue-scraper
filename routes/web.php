@@ -30,3 +30,5 @@ Route::post('/api/register', [RegisterController::class, 'register']);
 
 Route::post('/api/login', [LoginController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/api/logout', [LoginController::class, 'logout']);
+
+Route::get('/activities', [ActivityController::class, 'getOrderedActivities']);
