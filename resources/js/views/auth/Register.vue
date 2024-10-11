@@ -44,7 +44,6 @@
                     placeholder="Pick some interests"
                     label="name"
                     track-by="name"
-                    :preselect-first="true"
                     id="interests"
                 >
                     <template #selection="{ values, search, isOpen }">
