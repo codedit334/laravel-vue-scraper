@@ -24,39 +24,25 @@ export default {
     data() {
         return {
             // An array of activities with data for the cards
-            activities: [
-                {
-                    imageSrc:
-                        "https://brandingo.net/storage/images/FLUlmnMHkeFtXjDZAVuFMd82O9BxiNKrcGEo4D0L.jpg",
-                    title: "Allo Bike: Cours d'apprentissage",
-                    price: "200DH",
-                    tags: ['Cycling'],
-
-                },
-                {
-                    imageSrc:
-                        "https://brandingo.net/storage/images/8r2X6MuJk2hcB73TA1Y8fLxN2ZTnQljig8VBW5UH.jpg",
-                    title: "Bolt Fitness",
-                    price: "50.00 DH",
-                    tags: ['Fitness'],
-                },
-                {
-                    imageSrc:
-                        "https://brandingo.net/storage/images/0I513iWxjeeTrq0sxZxo8uYxjA27wLkamCPb1rRk.jpg",
-                    title: "K Boxing Club",
-                    price: "25.00 DH",
-                    tags: ['Boxing'],
-                },
-                 {
-                    imageSrc:
-                        "https://brandingo.net/storage/images/B8y0CCIPRtumfQyoIhyCcF81hgBdsf60tRXP6Ycs.jpg",
-                    title: "WeFoot Terrain 5vs5 ( T4 )",
-                    price: "300.00 DH",
-                    tags: ['Football'],
-                },
-            ],
+            activities: [],
+            loading: true,
+            error: null,
         };
     },
+     created() {
+    this.fetchActivities();
+  },methods: {
+    async fetchActivities() {
+      try {
+        const response = await axios.get('/api/activities'); // Adjust this URL to your API endpoint
+        this.activities = response.data.activities;
+      } catch (err) {
+        this.error = 'Failed to load activities. Please try again later.';
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
 };
 </script>
 
@@ -65,17 +51,17 @@ export default {
     padding: 20px;
 }
 .sportma-page h1 {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 .cards-container {
     display: flex;
-    flex-wrap: wrap;  /* Allows wrapping to the next line */
-    gap: 20px;        /* Space between cards */
-    justify-content: space-between;  /* Aligns cards to the start */
+    flex-wrap: wrap; /* Allows wrapping to the next line */
+    gap: 20px; /* Space between cards */
+    justify-content: space-between; /* Aligns cards to the start */
 }
 
 .card {
-    flex: 0 1 350px;  /* Prevents the card from growing, keeps a base width of 300px */
+    flex: 0 1 350px; /* Prevents the card from growing, keeps a base width of 300px */
     max-width: 350px; /* Ensures cards do not grow beyond this width */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
