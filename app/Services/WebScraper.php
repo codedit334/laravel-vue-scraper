@@ -158,7 +158,6 @@ foreach ($this->urls as $urlInfo) {
 
             }
 
-            $article['debug'] = $this->scrapeActivities();
             // Add article to the list
             $articles[] = $article;
         }

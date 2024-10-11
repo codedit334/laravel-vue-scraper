@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {   
@@ -30,6 +31,8 @@ class RegisterController extends Controller
             'gender' => $request->gender,
             'interests' => json_encode($request->interests), // Store interests as JSON
         ]);
+        
+        Auth::login($user);
 
             // Create a new token for the user
         $token = $user->createToken('Sportma')->plainTextToken;

@@ -112,6 +112,7 @@ export default {
                 { name: "Fitness" },
                 { name: "Cycling" },
                 { name: "Tennis" },
+                { name: "Boxing" },
             ],
             form: {
                 name: "",

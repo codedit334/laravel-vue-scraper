@@ -29,8 +29,13 @@ export default createStore({
       commit('setUser', response.data.user);
     },
     async logout({ commit }) {
-      await axios.post('/api/logout');
-      commit('clearAuthData');
+      try {
+        const response = await axios.post('/api/logout');
+        console.log(response.data); // Log the JSON response
+        commit('clearAuthData');
+      } catch (error) {
+        console.error('Logout error:', error.response ? error.response.data : error.message);
+      }
     },
     async getUser({ commit }) {
       const response = await axios.get('/api/user');

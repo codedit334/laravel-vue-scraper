@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,7 +11,7 @@ class ActivityController extends Controller
     public function getOrderedActivities(Request $request)
     {
         // Define standard activity cards
-        return $activities = [
+        $activities = [
             [
                 'imageSrc' => "https://brandingo.net/storage/images/FLUlmnMHkeFtXjDZAVuFMd82O9BxiNKrcGEo4D0L.jpg",
                 'title' => "Allo Bike: Cours d'apprentissage",
@@ -39,9 +39,15 @@ class ActivityController extends Controller
         ];
 
         // Check if user is authenticated
-        $user = $request->user(); // Assuming the user is authenticated
+        // $user = $request->user(); // Assuming the user is authenticated
+        $user = Auth::user(); // Assuming the user is authenticated
 
         if ($user) {
+            
+            // log the user details
+            // dd($user);
+            
+            
             // User is logged in, score and sort activities based on interests
             $userInterests = json_decode($user->interests);
 

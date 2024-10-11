@@ -29,7 +29,7 @@ export default {
             error: null,
         };
     },
-    created() {
+    mounted() {
         this.fetchActivities();
     },
     methods: {
@@ -39,7 +39,7 @@ export default {
                 
                 console.log("fetching activities data", response.data);
                 
-                this.activities = response.data;
+                this.activities = response.data.activities;
             } catch (err) {
                 this.error =
                     "Failed to load activities. Please try again later.";
