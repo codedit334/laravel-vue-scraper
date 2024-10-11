@@ -4,19 +4,20 @@
             <div class="logo">
                 <h1>Sportma Remastered</h1>
             </div>
-            <div
-                class="nav-wrapper"
-                style="display: flex; align-items: center; gap: 60px"
-            >
+            <div class="nav-wrapper" style="display: flex; align-items: center; gap: 60px">
                 <div class="nav-links">
                     <router-link to="/sportma">Sportma</router-link>
                     <router-link to="/scrape">News</router-link>
                 </div>
                 <div class="nav-buttons">
-                    <router-link to="/login" class="button">Login</router-link>
-                    <router-link to="/register" class="button"
-                        >Register</router-link
-                    >
+                    <template v-if="isLoggedIn">
+                        <span class="user-name">Welcome, {{ userName }}</span>
+                        <button @click="logout" class="button">Logout</button>
+                    </template>
+                    <template v-else>
+                        <router-link to="/login" class="button">Login</router-link>
+                        <router-link to="/register" class="button">Register</router-link>
+                    </template>
                 </div>
             </div>
         </div>
@@ -24,8 +25,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
     name: "Navbar",
+    computed: {
+        ...mapState({
+            userName: state => state.user ? state.user.name : '',
+            isLoggedIn: state => !!state.user,
+        }),
+    },
+    methods: {
+        logout() {
+            // Call your Vuex action to log out the user
+            this.$store.dispatch('logout');
+            // Optionally, redirect to the home page after logout
+            this.$router.push('/');
+        },
+    },
 };
 </script>
 
@@ -50,26 +67,14 @@ export default {
 
 .nav-buttons {
     display: flex;
+    align-items: center; /* Center align items vertically */
     gap: 10px;
 }
 
-.nav-links {
-    display: flex;
-    gap: 20px;
-    color: white; /* White text */
-    text-decoration: none; /* Removes underline */
-}
-
-.nav-links a {
-    color: white; /* White text */
-    text-decoration: none; /* Removes underline */
+.user-name {
     font-family: Arial, sans-serif;
+    color: white; /* White text for username */
     font-weight: bold;
-    font-size: 14px;
-}
-
-.nav-links a:hover {
-    color: #6c7c59; /* White text */
 }
 
 .button {
