@@ -26,3 +26,6 @@ Route::get('/{any}', function () {
 
 Route::post('/scrape', [ScraperController::class, 'scrape'])->name('scrape');
 Route::post('/api/register', [RegisterController::class, 'register']);
+
+Route::post('login', [LoginController::class, 'login']);
+Route::middleware('auth:sanctum')->post('logout', [LoginController::class, 'logout']);
