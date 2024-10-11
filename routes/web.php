@@ -25,4 +25,4 @@ Route::get('/{any}', function () {
 })->where('any', '.*');
 
 Route::post('/scrape', [ScraperController::class, 'scrape'])->name('scrape');
-Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/api/register', [RegisterController::class, 'register']);
