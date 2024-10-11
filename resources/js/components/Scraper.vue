@@ -2,19 +2,24 @@
     <div>
         <h1>Web Scraper - AI Text Analysis</h1>
         <button @click="scrape">News</button>
-        
+
         <div class="scraper">
             <h1>News Articles</h1>
             <div v-if="articles.length === 0 && !loading">No articles found.</div>
             <div v-if="loading">Loading...</div>
             <div v-else>
-                <div class="articles-wrapper">
-                    <div v-for="(article, index) in articles" :key="index" class="article">
+                <div class="articles-grid">
+                    <div v-for="(article, index) in articles" :key="index" class="article-card">
                         <a :href="article.link" target="_blank" class="article-link">
-                            <h2>{{ article.title }}</h2>
-                            <img :src="article.image" :alt="article.title" class="article-image" />
-                            <p>{{ article.body }}</p>
+                            <div class="article-image-wrapper">
+                                <img :src="article.image" :alt="article.title" class="article-image" />
+                            </div>
+                            <div class="article-content">
+                                <h2>{{ article.title }}</h2>
+                                <p>{{ article.body }}</p>
+                            </div>
                         </a>
+
                         <!-- Recommended Coaches Section -->
                         <div v-if="article.coaches.length > 0" class="coaches">
                             <h3>Recommended Coaches:</h3>
@@ -63,71 +68,123 @@ export default {
 
 <style scoped>
 .scraper {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
-  font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
-.articles-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
 }
 
-.article {
-  margin: 20px;
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+button:hover {
+    background-color: #0056b3;
+}
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.article-card {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure content is between header and bottom section */
+}
+
+.article-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.article-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.article-image-wrapper {
+    overflow: hidden;
+    height: 200px;
 }
 
 .article-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.article-card:hover .article-image {
+    transform: scale(1.1);
+}
+
+.article-content {
+    padding: 20px;
+    flex-grow: 1; /* Makes the content fill the available space */
+}
+
+.article-content h2 {
+    font-size: 20px;
+    margin: 0 0 10px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+.article-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
 }
 
 /* Recommended Coaches Section */
 .coaches {
-  margin-top: 15px;
-  text-align: center;
+    margin-top: 15px;
+    padding: 0 20px;
+    text-align: center;
 }
 
 .coaches-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .coach {
-  margin: 5px;
-  text-align: center;
+    margin: 5px;
+    text-align: center;
 }
 
 .coach-image {
-  width: 50px; /* Set width for coach image */
-  height: 50px; /* Set height for coach image */
-  border-radius: 50%; /* Make it rounded */
-  object-fit: cover; /* Ensure image covers the circle */
-}
-
-/* Reset link styles */
-.article-link {
-  text-decoration: none;
-  color: inherit;
-  width: 100%;
-}
-
-/* Change cursor to pointer on hover */
-.article-link:hover {
-  cursor: pointer;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-bottom: 5px;
 }
 </style>
