@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -43,6 +42,9 @@ class ActivityController extends Controller
         if ($user) {
             // User is logged in, score and sort activities based on interests
             $userInterests = json_decode($user->interests);
+            $userInterestNames = array_map(function($interest) {
+                return $interest->name;
+            }, $userInterests);
 
             // Score and sort activities
             $scoredActivities = [];
@@ -53,14 +55,34 @@ class ActivityController extends Controller
                         $score++;
                     }
                 }
+                // Add score and index of the first matched interest for secondary sorting
+                $firstInterestIndex = count($userInterestNames); // Default to a high number if no match is found
+                foreach ($activity['tags'] as $tag) {
+                    $interestIndex = array_search($tag, $userInterestNames);
+                    if ($interestIndex !== false) {
+                        $firstInterestIndex = $interestIndex;
+                        break;
+                    }
+                }
+
                 $scoredActivities[] = [
                     'activity' => $activity,
                     'score' => $score,
+                    'first_interest_index' => $firstInterestIndex,
                 ];
             }
 
+            // Sort by score first, then by the order of the user's interests
             usort($scoredActivities, function ($a, $b) {
-                return $b['score'] <=> $a['score'];
+                // First sort by score
+                $scoreComparison = $b['score'] <=> $a['score'];
+                
+                // If scores are equal, sort by the position of the first interest
+                if ($scoreComparison === 0) {
+                    return $a['first_interest_index'] <=> $b['first_interest_index'];
+                }
+                
+                return $scoreComparison;
             });
 
             $sortedActivities = array_column($scoredActivities, 'activity');
