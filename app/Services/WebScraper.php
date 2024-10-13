@@ -46,6 +46,12 @@ class WebScraper
             'work' => 'Tennis Coach',
             'image' => 'https://images.pexels.com/photos/28847134/pexels-photo-28847134/free-photo-of-young-man-sitting-outdoors-in-urban-setting.jpeg?auto=compress&cs=tinysrgb&w=600',
             'tags' => ['tennis'],
+        ],
+        [
+            'name' => 'Amir',
+            'work' => 'Running Coach',
+            'image' => 'https://images.pexels.com/photos/1300402/pexels-photo-1300402.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'tags' => ['jogging', 'running', 'run', 'jog', 'course', 'courses', 'marathon']
         ]
     ];
 
