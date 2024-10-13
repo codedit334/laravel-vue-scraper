@@ -130,8 +130,6 @@ export default {
                 email: "",
                 gender: "",
                 address: "",
-                latitude: "",
-                longitude: "",
                 password: "",
                 password_confirmation: "",
                 interests: [],
@@ -142,37 +140,6 @@ export default {
     },
     methods: {
         async register() {
-            try {
-                const loader = new Loader({
-                    apiKey: "YOUR_GOOGLE_MAPS_API_KEY",
-                    version: "weekly",
-                });
-
-                await loader.load();
-                const geocoder = new google.maps.Geocoder();
-
-                geocoder.geocode(
-                    { address: this.user.address },
-                    (results, status) => {
-                        if (status === "OK") {
-                            const location = results[0].geometry.location;
-                            const latitude = location.lat();
-                            const longitude = location.lng();
-
-                            // Pass lat/lng to backend during registration
-                            this.form.latitude = latitude;
-                            this.form.longitude = longitude;
-
-                            // Send to server
-                            this.submitUser();
-                        } else {
-                            console.error("Geocode failed: ", status);
-                        }
-                    }
-                );
-            } catch (error) {
-                console.error(error);
-            }
             try {
                 this.errorMessage = "";
                 this.successMessage = "";
@@ -194,8 +161,6 @@ export default {
                     name: "",
                     email: "",
                     address: "",
-                    latitude: "",
-                    longitude: "",
                     gender: "",
                     password: "",
                     password_confirmation: "",
