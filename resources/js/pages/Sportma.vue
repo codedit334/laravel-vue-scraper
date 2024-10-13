@@ -8,6 +8,7 @@
                 :key="index"
                 :image-src="activity.imageSrc"
                 :title="activity.title"
+                :address="activity.address"
                 :price="activity.price"
             />
         </div>

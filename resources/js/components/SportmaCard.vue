@@ -3,6 +3,7 @@
     <img :src="imageSrc" alt="Card Image">
     <div class="card-content">
       <div class="card-title">{{ title }}</div>
+      <div class="card-address">📍 {{ address }}</div>
       <div class="card-footer">
         <div class="price">
           <span class="starting-from">À partir de </span>
@@ -19,6 +20,7 @@ export default {
   props: {
     imageSrc: String,
     title: String,
+    address: String,
     price: String
   }
 }
@@ -47,6 +49,12 @@ export default {
 .card-title {
   font-size: 14.5px;
   font-weight: bold;
+  margin-bottom: 12px;
+  text-align: left; /* Title starts from the left */
+}
+
+.card-address {
+  font-size: 14.5px;
   margin-bottom: 12px;
   text-align: left; /* Title starts from the left */
 }
