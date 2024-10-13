@@ -23,12 +23,14 @@ class RegisterController extends Controller
             'address' => 'required|string|max:255',
         ]);
 
+        
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
         
         $adressResult = $geocoder->geocode($request->address);
-
+        
+        // return response()->json(['message' => 'Successfully registered and logged in.', 'addressResult' => $adressResult], 200);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -36,8 +38,8 @@ class RegisterController extends Controller
             'gender' => $request->gender,
             'interests' => json_encode($request->interests), // Store interests as JSON
             'address' => $request->address,
-            'latitude' => $request->latitude = $adressResult[0]['geometry']['lat'],
-            'longitude' => $request->longitude = $adressResult[0]['geometry']['lng'],
+            'latitude' => $adressResult['results'][0]['geometry']['lat'],
+            'longitude' => $adressResult['results'][0]['geometry']['lng'],
             
         ]);
         
