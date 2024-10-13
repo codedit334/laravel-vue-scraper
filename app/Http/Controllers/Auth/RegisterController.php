@@ -18,6 +18,9 @@ class RegisterController extends Controller
             'password' => 'required|string|confirmed|min:8',
             'gender' => 'required|string|max:255',
             'interests' => 'required|array', // Add interests validation
+            'address' => 'required|string|max:255',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -30,6 +33,10 @@ class RegisterController extends Controller
             'password' => bcrypt($request->password),
             'gender' => $request->gender,
             'interests' => json_encode($request->interests), // Store interests as JSON
+            'address' => $request->address,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            
         ]);
         
         Auth::login($user);
