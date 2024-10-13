@@ -12,6 +12,8 @@ class RegisterController extends Controller
 {   
     public function register(Request $request)
     {
+        $geocoder = new \OpenCage\Geocoder\Geocoder('4cf772a35564449eb67f3673c61f1e6b');
+        
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -19,13 +21,13 @@ class RegisterController extends Controller
             'gender' => 'required|string|max:255',
             'interests' => 'required|array', // Add interests validation
             'address' => 'required|string|max:255',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
+        
+        $adressResult = $geocoder->geocode($request->address);
 
         $user = User::create([
             'name' => $request->name,
@@ -34,8 +36,8 @@ class RegisterController extends Controller
             'gender' => $request->gender,
             'interests' => json_encode($request->interests), // Store interests as JSON
             'address' => $request->address,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
+            'latitude' => $request->latitude = $adressResult[0]['geometry']['lat'],
+            'longitude' => $request->longitude = $adressResult[0]['geometry']['lng'],
             
         ]);
         
