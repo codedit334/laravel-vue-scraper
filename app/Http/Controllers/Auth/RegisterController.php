@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -10,9 +11,19 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {   
+    public function geocode($address)
+    {
+        $apiKey = 'j6a6-fVxn_9InNCkWf_Y0M8n8GI6ovON9tiUxxhgd0U';
+    
+        $response = Http::get('https://geocode.search.hereapi.com/v1/geocode', [
+            'q' => $address,
+            'apiKey' => $apiKey,
+        ]);
+    
+        return $response->json();
+    }
     public function register(Request $request)
     {
-        $geocoder = new \OpenCage\Geocoder\Geocoder('4cf772a35564449eb67f3673c61f1e6b');
         
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -27,8 +38,19 @@ class RegisterController extends Controller
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
+
+        // Get latitude and longitude from HERE API
+        $geocodeResponse = $this->geocode($request->address);
+
+        // Check if the geocoding API returned valid results
+        if (isset($geocodeResponse['items']) && count($geocodeResponse['items']) > 0) {
+            
+            $latitude = $geocodeResponse['items'][0]['position']['lat'];
+            $longitude = $geocodeResponse['items'][0]['position']['lng'];
+        } else {
+            return response()->json(['error' => 'Unable to retrieve location data.'], 422);
+        }
         
-        $adressResult = $geocoder->geocode($request->address);
         
         // return response()->json(['message' => 'Successfully registered and logged in.', 'addressResult' => $adressResult], 200);
         $user = User::create([
@@ -38,9 +60,8 @@ class RegisterController extends Controller
             'gender' => $request->gender,
             'interests' => json_encode($request->interests), // Store interests as JSON
             'address' => $request->address,
-            'latitude' => $adressResult['results'][0]['geometry']['lat'],
-            'longitude' => $adressResult['results'][0]['geometry']['lng'],
-            
+            'latitude' => $latitude,
+            'longitude' => $longitude,
         ]);
         
         Auth::login($user);
@@ -55,4 +76,6 @@ class RegisterController extends Controller
             'user' => $user,
         ]);
     }
+    
+  
 }

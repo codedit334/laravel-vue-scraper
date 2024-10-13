@@ -139,45 +139,44 @@ export default {
         };
     },
     methods: {
-        async register() {
-            try {
-                this.errorMessage = "";
-                this.successMessage = "";
+    async register() {
+        this.errorMessage = "";
+        this.successMessage = "";
 
-                // Make sure to send the form data to the correct endpoint
-                const response = await axios.post("/api/register", this.form);
-                this.successMessage = response.data.message;
+        // Step 1: Make sure to send the form data to the correct endpoint
+        try {
+            const registrationResponse = await axios.post("/api/register", this.form);
+            console.log(registrationResponse.data);
+            this.successMessage = registrationResponse.data.message;
 
-                // Dispatch login action
-                this.$store.dispatch("login", {
-                    user: response.data.user,
-                    token: response.data.token,
-                });
+            // Dispatch login action
+            this.$store.dispatch("login", {
+                user: registrationResponse.data.user,
+                token: registrationResponse.data.token,
+            });
 
-                // Redirect to the home page
-                this.$router.push("/");
-                this.form = {
-                    name: "",
-                    email: "",
-                    address: "",
-                    gender: "",
-                    password: "",
-                    password_confirmation: "",
-                    interests: [],
-                };
-            } catch (error) {
-                if (error.response && error.response.data.errors) {
-                    this.errorMessage = Object.values(
-                        error.response.data.errors
-                    )
-                        .flat()
-                        .join(" ");
-                } else {
-                    this.errorMessage = "An error occurred. Please try again.";
-                }
+            // Redirect to the home page
+            this.$router.push("/");
+            // Reset the form after successful registration
+            this.form = {
+                name: "",
+                email: "",
+                address: "",
+                gender: "",
+                password: "",
+                password_confirmation: "",
+                interests: [],
+            };
+        } catch (error) {
+            if (error.response && error.response.data.errors) {
+                this.errorMessage = Object.values(error.response.data.errors).flat().join(" ");
+            } else {
+                this.errorMessage = "An error occurred. Please try again.";
             }
-        },
+        }
     },
+},
+
 };
 </script>
 

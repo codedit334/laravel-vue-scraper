@@ -38,7 +38,7 @@ export default {
     name: "Navbar",
     data() {
     return {
-      logoSrc: '/images/sportma-orange.png' // Adjust the path as needed
+      logoSrc: '/images/sportma-yellow.png' // Adjust the path as needed
     };
   },
     computed: {
