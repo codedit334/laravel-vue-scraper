@@ -14,7 +14,6 @@
         "vite": "^5.4.8"
     },
     "dependencies": {
-        "@googlemaps/js-api-loader": "^1.16.8",
         "@vitejs/plugin-vue": "^5.1.4",
         "vue": "^3.5.11",
         "vue-multiselect": "^3.0.0-beta.3",
