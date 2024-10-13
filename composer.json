@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.5",
+        "opencage/geocode": "^3.3",
         "php-ai/php-ml": "^0.10.0"
     },
     "require-dev": {
