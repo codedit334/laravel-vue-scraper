@@ -13,6 +13,16 @@
             </div>
 
             <div class="form-group">
+                <label for="address">Address</label>
+                <input
+                    type="text"
+                    id="address"
+                    v-model="form.address"
+                    required
+                />
+            </div>
+
+            <div class="form-group">
                 <label for="gender">Gender</label>
                 <select
                     id="gender"
@@ -118,6 +128,7 @@ export default {
                 name: "",
                 email: "",
                 gender: "",
+                address: "",
                 password: "",
                 password_confirmation: "",
                 interests: [],
