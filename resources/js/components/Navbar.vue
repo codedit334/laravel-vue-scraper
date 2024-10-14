@@ -37,10 +37,10 @@ import { mapState } from "vuex";
 export default {
     name: "Navbar",
     data() {
-    return {
-      logoSrc: '/images/sportma-yellow.png' // Adjust the path as needed
-    };
-  },
+        return {
+            logoSrc: "/images/sportma-yellow.png", // Adjust the path as needed
+        };
+    },
     computed: {
         ...mapState({
             userName: (state) => (state.user ? state.user.name : ""),
@@ -60,24 +60,26 @@ export default {
 
 <style scoped>
 .logo {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .logo img {
-  width: 150px; /* Adjust the size as needed */
-  margin-left: 20px; /* Space between logo and text */
+    width: 150px; /* Adjust the size as needed */
+    margin-left: 20px; /* Space between logo and text */
 }
 .navbar {
     background-color: #007bff; /* Blue background */
     color: white; /* White text */
     padding: 10px 20px;
+    width: 100%;
 }
 
 .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 30px;
 }
 
 .nav-links {
