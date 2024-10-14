@@ -71,7 +71,7 @@ export default {
 .navbar {
     background-color: #007bff; /* Blue background */
     color: white; /* White text */
-    padding: 10px 20px;
+    padding: 10px 0;
     width: 100%;
 }
 

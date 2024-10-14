@@ -1,6 +1,9 @@
 <template>
     <div class="sportma-page">
         <h1>Sportma Activities</h1>
+        <div style="">
+        
+        </div>
         <div class="cards-container">
             <!-- Loop through the activities array and display a card for each activity -->
             <card-component
@@ -53,6 +56,7 @@ export default {
 <style scoped>
 .sportma-page {
     padding: 20px;
+    width: 97%;
 }
 .sportma-page h1 {
     font-family: "Roboto", sans-serif;
