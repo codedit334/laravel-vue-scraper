@@ -116,7 +116,7 @@ foreach ($this->urls as $urlInfo) {
 
     // Scrape the articles
     $crawler->filter($urlInfo['urlData']['CSSSelector'])->each(function ($node, $index) use (&$articles, $urlInfo) {
-        if ($index < 9) { // Only scrape the first two articles
+        if ($index < 3) { // Only scrape the first three articles
 
             // Initialize article data
             $article = [];
@@ -163,7 +163,15 @@ foreach ($this->urls as $urlInfo) {
               // Check for link
               $linkNode = $node->filter($urlInfo['urlData']['a']); // Adjust the selector if you have a specific anchor tag to target
               if ($linkNode->count() > 0) {
-                  $article['link'] = $linkNode->attr('href'); // Get the href attribute
+                  $href = $linkNode->attr('href'); // Get the href attribute
+                  
+                  if (strpos($href, 'http') === 0) {
+                    $article['link'] = $href; // Full URL, no need to modify
+                } else {
+                    $article['link'] = rtrim($urlInfo['url'], '/') . '/' . ltrim($href, '/'); // Prepend base URL to path
+                }
+                
+                //   $article['link'] = $linkNode->attr('href'); // Get the href attribute
               } else {
                   $article['link'] = 'Link not available';
               }
