@@ -56,8 +56,8 @@ export default {
 <style scoped>
 .sportma-page {
     padding: 20px;
-    width: 97%;
 }
+
 .sportma-page h1 {
     font-family: "Roboto", sans-serif;
 }
