@@ -1,9 +1,11 @@
 <template>
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="logo">
-                <img :src="logoSrc" alt="Sportma Logo" />
-            </div>
+            <router-link to="/">
+                <div class="logo">
+                    <img :src="logoSrc" alt="Sportma Logo" />
+                </div>
+            </router-link>
             <div
                 class="nav-wrapper"
                 style="display: flex; align-items: center; gap: 60px"
