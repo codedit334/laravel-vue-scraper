@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div class="scraper">
+        <div class="scraper animate__animated animate__fadeInDown">
             <div v-if="articles.length === 0 && !loading">No articles found.</div>
             <div v-if="loading">Loading...</div>
             <div v-else>
-                <div class="articles-grid">
+                <div class="articles-grid animate__animated animate__fadeInDown">
                     <div v-for="(article, index) in articles" :key="index" class="article-card">
                         <a :href="article.link" target="_blank" class="article-link">
                             <div class="article-image-wrapper">
