@@ -4,7 +4,7 @@
         <div style="">
         
         </div>
-        <div class="cards-container">
+        <div class="cards-container animate__animated animate__fadeInLeft">
             <!-- Loop through the activities array and display a card for each activity -->
             <card-component
                 v-for="(activity, index) in activities"
