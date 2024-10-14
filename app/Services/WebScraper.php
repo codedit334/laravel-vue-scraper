@@ -29,9 +29,20 @@ class WebScraper
                     'body' => '.card-text',
                     'a' => 'div > a',
                     'img' => 'img',
-                    'attr' => 'src',
+                    'attr' => 'data-src',
                 ]
                 ],
+                [
+                    'url' => 'https://sport.le360.ma',
+                    'urlData' => [
+                        'CSSSelector' => '.article-list-item',
+                        'title' => '.headline-text',
+                        'body' => '.description-text',
+                        'a' => 'div > a',
+                        'img' => 'img',
+                        'attr' => 'src',
+                    ]
+                    ],
     ];
 
     public $coaches = [
@@ -51,7 +62,7 @@ class WebScraper
             'name' => 'Ghizlane',
             'work' => 'Cyclism Coach',
             'image' => 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-            'tags' => ['Bike', 'Cyclisme', 'Cyclist'],
+            'tags' => ['Bike', 'Cyclisme', 'Cyclist', 'Bikingman'],
         ],
         [
             'name' => 'Samir',
@@ -63,7 +74,7 @@ class WebScraper
             'name' => 'Amir',
             'work' => 'Running Coach',
             'image' => 'https://images.pexels.com/photos/1300402/pexels-photo-1300402.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'tags' => ['jogging', 'running', 'run', 'jog', 'course', 'courses', 'marathon']
+            'tags' => ['jogging', 'running', 'run', 'jog', 'course', 'courses', 'marathon', 'marathons']
         ]
     ];
 
@@ -168,7 +179,7 @@ foreach ($this->urls as $urlInfo) {
                         $article['image'] = $matches[1]; // This will give you the fallback URL
                     }
                 }
-                else $article['image'] = $imageNode->attr('data-src');
+                else $article['image'] = $imageNode->attr($urlInfo['urlData']['attr']);
                 
             } else {
                 $article['image'] = 'Image not available';
