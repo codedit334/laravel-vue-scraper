@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="animate__animated animate__zoomIn">
+  <div id="app" class="animate__animated animate__fadeInDown">
     <Navbar/>
     <router-view></router-view> <!-- Vue Router View -->
   </div>
