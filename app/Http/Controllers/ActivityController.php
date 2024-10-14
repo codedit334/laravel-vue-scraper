@@ -23,7 +23,7 @@ class ActivityController extends Controller
             [
                 'imageSrc' => "https://brandingo.net/storage/images/obJbflRT4u4tuIOmxxYavNGyNkTYfUZmKdKTaipA.png",
                 'title' => "Tanger BelVelo : Séance d'apprentissage",
-                'address' => 'Tanger ,Maroc',
+                'address' => 'Tanger, Maroc',
                 'latitude' => '35.7642313',
                 'longitude' => '-5.8429614',
                 'price' => "150DH",
@@ -32,7 +32,7 @@ class ActivityController extends Controller
             [
                 'imageSrc' => "https://brandingo.net/storage/images/7UYu7HyRSL2ZN8g4WfXx1VNIZM8yWUofNUsgktoO.png",
                 'title' => "Tanger BelVelo : Cycling in the Forest 100% women",
-                'address' => 'Tanger ,Maroc',
+                'address' => 'Tanger, Maroc',
                 'latitude' => '35.7642313',
                 'longitude' => '-5.8429614',
                 'price' => "130DH",

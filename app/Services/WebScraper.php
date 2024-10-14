@@ -18,8 +18,20 @@ class WebScraper
                 'body' => 'a.article-body',
                 'a' => 'a',
                 'img' => 'div.article-image img',
+                'attr' => 'onerror',
             ]
-        ]
+            ],
+            [
+                'url' => 'https://www.clubs.ma/evenements/',
+                'urlData' => [
+                    'CSSSelector' => 'div.card-item',
+                    'title' => '.card-body a',
+                    'body' => '.card-text',
+                    'a' => 'div > a',
+                    'img' => 'img',
+                    'attr' => 'src',
+                ]
+                ],
     ];
 
     public $coaches = [
@@ -148,17 +160,16 @@ foreach ($this->urls as $urlInfo) {
             // Check for image src
             $imageNode = $node->filter($urlInfo['urlData']['img']);
             if ($imageNode->count() > 0) {
-                // $article['image'] = $imageNode->attr('src');
-                $onerrorAttr = $imageNode->attr('onerror');
-        
-            // Use regex to extract the fallback src from the onerror attribute
-            if (preg_match("/this\.src='(.*?)'/", $onerrorAttr, $matches)) {
-                $article['image'] = $matches[1]; // This will give you the fallback URL
-            }
-            
-            else{
-                $article['image'] = $imageNode->attr('src'); // This will give you the fallback URL
-            }
+                if($urlInfo['urlData']['attr'] === 'onerror') {
+                    $onerrorAttr = $imageNode->attr('onerror');
+                
+                    // Use regex to extract the fallback src from the onerror attribute
+                    if (preg_match("/this\.src='(.*?)'/", $onerrorAttr, $matches)) {
+                        $article['image'] = $matches[1]; // This will give you the fallback URL
+                    }
+                }
+                else $article['image'] = $imageNode->attr('data-src');
+                
             } else {
                 $article['image'] = 'Image not available';
 

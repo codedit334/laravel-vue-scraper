@@ -54,6 +54,7 @@ export default {
 
                 const response = await axios.post('/scrape');
                 this.articles = response.data;
+                console.log(response.data);
             } catch (error) {
                 console.error(error);
             } finally {
