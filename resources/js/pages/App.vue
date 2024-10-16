@@ -1,7 +1,10 @@
 <template>
   <div id="app" class="animate__animated animate__fadeInDown">
     <Navbar/>
-    <router-view></router-view> <!-- Vue Router View -->
+    <div style="min-height: 100vh;">
+      <router-view></router-view> <!-- Vue Router View -->
+    </div>
+    <Footer/>
   </div>
 </template>
 
@@ -9,14 +12,15 @@
 import Navbar from '../components/Navbar.vue';
 import Scraper from '../components/Scraper.vue';
 import Sportma from './Sportma.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
     Navbar,
     Scraper,
-    Sportma
-    // Register your components here if needed
+    Sportma,
+    Footer,
   },
 };
 </script>

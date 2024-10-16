@@ -12,7 +12,7 @@
             >
                 <div class="nav-links">
                     <router-link to="/sportma">Sportma</router-link>
-                    <router-link to="/scrape">News</router-link>
+                    <router-link to="/news">News</router-link>
                 </div>
                 <div class="nav-buttons">
                     <template v-if="isLoggedIn">
