@@ -109,7 +109,6 @@
 
 <script>
 import axios from "axios";
-import { Loader } from "@googlemaps/js-api-loader";
 import Multiselect from "vue-multiselect";
 
 export default {

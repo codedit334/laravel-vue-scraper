@@ -9,7 +9,6 @@
                     <span class="starting-from">À partir de </span>
                     <span class="price-amount">{{ price }}</span>
                 </div>
-                <a href="#" class="button">Voir Plus</a>
             </div>
         </div>
     </div>

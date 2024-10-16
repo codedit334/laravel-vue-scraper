@@ -4,25 +4,29 @@
             <div v-if="articles.length === 0 && !loading">No articles found.</div>
             <div v-if="loading">Loading...</div>
             <div v-else>
-                <div class="articles-grid animate__animated animate__fadeInDown">
-                    <div v-for="(article, index) in articles" :key="index" class="article-card">
-                        <a :href="article.link" target="_blank" class="article-link">
-                            <div class="article-image-wrapper">
-                                <img :src="article.image" :alt="article.title" class="article-image" />
-                            </div>
-                            <div class="article-content">
-                                <h2>{{ article.title }}</h2>
-                                <p>{{ article.body }}</p>
-                            </div>
-                        </a>
+                <!-- Loop through each category group -->
+                <div v-for="(articles, category) in groupedArticles" :key="category" class="articles-section animate__animated animate__fadeInDown">
+                    <h2>{{ category !== 'undefined' ? category : 'Other' }}</h2>
+                    <div class="articles-grid">
+                        <div v-for="(article, index) in articles" :key="index" class="article-card">
+                            <a :href="article.link" target="_blank" class="article-link">
+                                <div class="article-image-wrapper">
+                                    <img :src="article.image" :alt="article.title" class="article-image" />
+                                </div>
+                                <div class="article-content">
+                                    <h2>{{ article.title }}</h2>
+                                    <p>{{ article.body }}</p>
+                                </div>
+                            </a>
 
-                        <!-- Recommended Coaches Section -->
-                        <div v-if="article.coaches.length > 0" class="coaches">
-                            <h3>Recommended Coaches:</h3>
-                            <div class="coaches-wrapper">
-                                <div v-for="(coach, coachIndex) in article.coaches" :key="coachIndex" class="coach">
-                                    <img :src="coach.image" alt="Coach Image" class="coach-image" />
-                                    <p><b>{{ coach.work }} :</b> {{ coach.name }}</p>
+                            <!-- Recommended Coaches Section -->
+                            <div v-if="article.coaches.length > 0" class="coaches">
+                                <h3>Recommended Coaches:</h3>
+                                <div class="coaches-wrapper">
+                                    <div v-for="(coach, coachIndex) in article.coaches" :key="coachIndex" class="coach">
+                                        <img :src="coach.image" alt="Coach Image" class="coach-image" />
+                                        <p><b>{{ coach.work }} Coach:</b> {{ coach.name }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -33,6 +37,7 @@
     </div>
 </template>
 
+
 <script>
 export default {
     data() {
@@ -40,6 +45,7 @@ export default {
             url: '',
             titles: [],
             articles: [],
+            groupedArticles: {},
             loading: false,
         };
     },
@@ -54,12 +60,27 @@ export default {
 
                 const response = await axios.post('/scrape');
                 this.articles = response.data;
-                console.log(response.data);
+                this.groupArticlesByCategory();
             } catch (error) {
                 console.error(error);
             } finally {
                 this.loading = false;
             }
+        },
+        groupArticlesByCategory() {
+            // Group articles by category and place 'Other' at the end
+            const grouped = this.articles.reduce((groups, article) => {
+                const category = article.cat || 'Other'; // Use 'Other' if category is undefined
+                if (!groups[category]) {
+                    groups[category] = [];
+                }
+                groups[category].push(article);
+                return groups;
+            }, {});
+
+            // Separate 'Other' from the rest and place it last
+            const { Other, ...rest } = grouped;
+            this.groupedArticles = { ...rest, Other };
         },
     },
 };

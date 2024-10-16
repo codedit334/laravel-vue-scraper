@@ -15,7 +15,6 @@ class TextTagger
 
     public function generateTags($text)
     {
-        // return 'ok';
         // Tokenize the text
         $tokens = $this->tokenizer->tokenize($text);
         

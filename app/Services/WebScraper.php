@@ -54,25 +54,25 @@ class WebScraper
         ],
         [
             'name' => 'Simo',
-            'work' => 'Football Coach',
+            'work' => 'Football',
             'image' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600',
             'tags' => ['Football,', 'Stade', 'raja', 'wydad', 'WAC', 'widad', 'Real', 'Sociedad', 'soccer', 'fifa', 'messi', 'ronaldo', "coupe", 'hakimi', 'nff', 'Regragui'],
         ],
         [
             'name' => 'Ghizlane',
-            'work' => 'Cyclism Coach',
+            'work' => 'Cyclism',
             'image' => 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             'tags' => ['Bike', 'Cyclisme', 'Cyclist', 'Bikingman'],
         ],
         [
             'name' => 'Samir',
-            'work' => 'Tennis Coach',
+            'work' => 'Tennis',
             'image' => 'https://images.pexels.com/photos/28847134/pexels-photo-28847134/free-photo-of-young-man-sitting-outdoors-in-urban-setting.jpeg?auto=compress&cs=tinysrgb&w=600',
             'tags' => ['tennis'],
         ],
         [
             'name' => 'Amir',
-            'work' => 'Running Coach',
+            'work' => 'Running',
             'image' => 'https://images.pexels.com/photos/1300402/pexels-photo-1300402.jpeg?auto=compress&cs=tinysrgb&w=600',
             'tags' => ['jogging', 'running', 'run', 'jog', 'course', 'courses', 'marathon', 'marathons']
         ]
@@ -154,6 +154,7 @@ foreach ($this->urls as $urlInfo) {
                          'image' => $coach['image'],
                          'work' => $coach['work'],
                      ];
+                     $article['cat'] = $coach['work'];
                  }
              }
             } else {
