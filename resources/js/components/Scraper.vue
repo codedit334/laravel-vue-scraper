@@ -258,15 +258,29 @@ export default {
     margin-bottom: 5px;
 }
 
-/*
-.swiper-button-next {
-    right: var(--swiper-navigation-sides-offset, -45px);
-    left: auto;
+/* Swiper Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+    z-index: 10;
+    opacity: 1; /* Keep buttons visible */
+    pointer-events: auto; /* Ensure buttons are always clickable */
+    background-color: rgba(0, 0, 0, 0.5); /* Add background color to make them more visible */
+    color: #fff;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.swiper-button-prev {
-    left: var(--swiper-navigation-sides-offset, -45px);
-    right: auto;
+/* Increase the size of the arrow icons */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 20px;
 }
-*/
+
+.swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled {
+    pointer-events: all;
+}
 </style>
