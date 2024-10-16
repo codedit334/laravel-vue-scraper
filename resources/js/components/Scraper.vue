@@ -20,8 +20,6 @@
                         :space-between="30"
                         navigation
                         :pagination="{ clickable: true }"
-                        @swiper="onSwiper"
-                        @slideChange="onSlideChange"
                         class="articles-swiper"
                     >
                         <swiper-slide
@@ -126,6 +124,7 @@ export default {
             try {
                 const response = await axios.post("/scrape");
                 this.articles = response.data;
+                console.log('data:', response);
                 this.groupArticlesByCategory();
             } catch (error) {
                 console.error(error);

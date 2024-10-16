@@ -60,7 +60,7 @@ class WebScraper
         ],
         [
             'name' => 'Ghizlane',
-            'work' => 'Cyclism',
+            'work' => 'Cycling',
             'image' => 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             'tags' => ['Bike', 'Cyclisme', 'Cyclist', 'Bikingman'],
         ],
@@ -138,7 +138,8 @@ foreach ($this->urls as $urlInfo) {
             if ($bodyNode->count() > 0) {
                 
                 $article['body'] = $bodyNode->text();
-                $article['tags'] = $this->textTagger->generateTags($article['body']);
+                $combinedText = $article['title'] . ' ' . $article['body'];
+                $article['tags'] = $this->textTagger->generateTags($combinedText);
                 $article['tags'] = json_decode(json_encode($article['tags']), true);
 
                 // Loop through the input array
@@ -195,6 +196,7 @@ foreach ($this->urls as $urlInfo) {
 
             // Add article to the list
             $articles[] = $article;
+            
         }
     });
 }
