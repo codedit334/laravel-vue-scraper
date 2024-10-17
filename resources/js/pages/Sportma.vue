@@ -1,6 +1,6 @@
 <template>
     <div class="sportma-page">
-        <h1>Activities:</h1>
+        <h1>🇦🇨🇹🇮🇻🇮🇹🇮🇪🇸:</h1>
   
         <div class="cards-container animate__animated animate__fadeInLeft">
             <!-- Loop through the activities array and display a card for each activity -->

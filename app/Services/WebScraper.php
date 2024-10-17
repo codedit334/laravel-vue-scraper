@@ -56,7 +56,7 @@ class WebScraper
             'name' => 'Simo',
             'work' => 'Football',
             'image' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600',
-            'tags' => ['Football,', 'MAT', 'Chelsea', 'Bayern', 'Munich', 'CAF', 'CAN', 'FAR', 'Stade', 'raja', 'wydad', 'WAC', 'widad', 'Real', 'Sociedad', 'soccer', 'fifa', 'messi', 'ronaldo', "coupe", 'hakimi', 'nff', 'Regragui'],
+            'tags' => ['Football,', 'Kylian', 'MAT', 'Chelsea', 'Bayern', 'Munich', 'CAF', 'CAN', 'FAR', 'Milan', 'Laliga', 'Stade', 'raja', 'wydad', 'WAC', 'widad', 'Real', 'Sociedad', 'soccer', 'fifa', 'messi', 'ronaldo', "coupe", 'hakimi', 'nff', 'Regragui'],
         ],
         [
             'name' => 'Ghizlane',
@@ -116,7 +116,7 @@ foreach ($this->urls as $urlInfo) {
 
     // Scrape the articles
     $crawler->filter($urlInfo['urlData']['CSSSelector'])->each(function ($node, $index) use (&$articles, $urlInfo) {
-        if ($index < 9) { // Only scrape the first three articles
+        if ($index < 19) { // Only scrape the first three articles
 
             // Initialize article data
             $article = [];
