@@ -12,7 +12,7 @@
                     :key="category"
                     class="articles-section animate__animated animate__fadeInDown"
                 >
-                    <h2>{{ category !== "undefined" ? category : "Other" }}</h2>
+                    <h2>{{ category !== "undefined" ? category : "All" }}</h2>
                     <!-- Swiper Carousel -->
                     <swiper
                         :modules="modules"
@@ -134,7 +134,7 @@ export default {
         },
         groupArticlesByCategory() {
             const grouped = this.articles.reduce((groups, article) => {
-                const category = article.cat || "Other";
+                const category = article.cat || "All";
                 if (!groups[category]) {
                     groups[category] = [];
                 }
@@ -142,8 +142,8 @@ export default {
                 return groups;
             }, {});
 
-            const { Other, ...rest } = grouped;
-            this.groupedArticles = { ...rest, Other };
+            const { All, ...rest } = grouped;
+            this.groupedArticles = { ...rest, All };
         },
     },
 };
