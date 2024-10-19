@@ -21,6 +21,7 @@
         "vue-cal": "^4.10.0",
         "vue-multiselect": "^3.0.0-beta.3",
         "vue-router": "^4.4.5",
+        "vue3-modal": "^0.1.6",
         "vuex": "^4.0.2"
     }
 }

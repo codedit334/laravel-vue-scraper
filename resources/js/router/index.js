@@ -10,7 +10,7 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/register', name: 'register', component: Register },
   { path: '/sportma', component: Sportma },
-  { path: '/news', component: Scraper }
+  { path: '/news', component: Scraper },
   { path: '/reservation', component: Reservation }
 ];
 
