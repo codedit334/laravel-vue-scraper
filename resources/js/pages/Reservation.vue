@@ -1,43 +1,11 @@
 <template>
     <vue-cal
-        ref="vuecal"
-        hide-title-bar
-        :time-from="0 * 60"
-        :time-to="23 * 60"
-        :snap-to-time="15"
-        :disable-views="['years', 'year', 'month', 'week']"
-        :editable-events="{
-            title: true,
-            drag: true,
-            resize: true,
-            delete: true,
-            create: true,
-        }"
-        :drag-to-create-threshold="15"
-        :cell-click-hold="false"
-        :drag-to-create-event="false"
-        editable-events
-        :split-days="splitDays"
-        :sticky-split-labels="stickySplitLabels"
-        :min-cell-width="minCellWidth"
-        :min-split-width="minSplitWidth"
-        @cell-click="createEventInSplit"
-        @cell-dblclick="handleCelldblClick"
-    >
-    </vue-cal>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <vue-cal
         ref="vuecal2"
         style="height: 500px"
         :time-from="8 * 60"
         :time-step="30"
-        :disable-views="['years', 'year', 'week']"
+        :disable-views="['years', 'week']"
+        :drag-to-create-event="false"
         show-time-in-cells
         :snap-to-time="15"
         editable-events
