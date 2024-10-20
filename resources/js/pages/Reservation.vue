@@ -34,10 +34,10 @@
     <br />
     <vue-cal
         ref="vuecal2"
-
+        style="height: 500px"
         :time-from="8 * 60"
         :time-step="30"
-        :disable-views="['years', 'year', 'month']"
+        :disable-views="['years', 'year', 'week']"
         show-time-in-cells
         :snap-to-time="15"
         editable-events
