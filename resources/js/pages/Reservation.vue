@@ -1,7 +1,8 @@
 <template>
     <vue-cal
         ref="vuecal2"
-        style="height: 500px"
+        class="vuecal--green-theme"    
+        style="height: 500px;margin-top: 80px"
         :time-from="8 * 60"
         :time-step="30"
         :disable-views="['years', 'week']"
@@ -77,7 +78,7 @@ export default {
 
 <style>
 .blue-event {
-    background-color: #007bff;
+    background-color: lightgreen;
     color: white;
 }
 </style>
