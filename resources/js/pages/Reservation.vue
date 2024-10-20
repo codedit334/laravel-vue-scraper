@@ -39,6 +39,7 @@
         :time-step="30"
         :disable-views="['years', 'year', 'month']"
         show-time-in-cells
+        :snap-to-time="15"
         editable-events
         :events="events"
         :split-days="splitDays"
@@ -91,7 +92,6 @@ export default {
                 // Create the new event in the correct split
                 this.$refs.vuecal2.createEvent(event.date, 120, {
                     title: `New Event`,
-                    content : `This is a new event in the ${split.label} split`,
                     class: "blue-event",
                     split: event.split, // Assign event to the correct split
                 });
