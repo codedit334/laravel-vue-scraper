@@ -39,6 +39,7 @@
         :time-from="8 * 60"
         :time-step="30"
         :disable-views="['years', 'year', 'month']"
+        show-time-in-cells
         editable-events
         :events="events"
         :split-days="splitDays"
