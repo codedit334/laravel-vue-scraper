@@ -35,7 +35,6 @@
     <vue-cal
         ref="vuecal2"
 
-        selected-date="2018-11-19"
         :time-from="8 * 60"
         :time-step="30"
         :disable-views="['years', 'year', 'month']"
@@ -92,6 +91,7 @@ export default {
                 // Create the new event in the correct split
                 this.$refs.vuecal2.createEvent(event.date, 120, {
                     title: `New Event`,
+                    content : `This is a new event in the ${split.label} split`,
                     class: "blue-event",
                     split: event.split, // Assign event to the correct split
                 });
