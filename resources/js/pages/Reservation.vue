@@ -73,11 +73,9 @@ export default {
             splitDays: [
                 // The id property is added automatically if none (starting from 1), but you can set a custom one.
                 // If you need to toggle the splits, you must set the id explicitly.
-                { id: 1, class: "mom", label: "Mom" },
-                { id: 2, class: "dad", label: "Dad", hide: false },
-                { id: 3, class: "kid1", label: "Kid 1" },
-                { id: 4, class: "kid2", label: "Kid 2" },
-                { id: 5, class: "kid3", label: "Kid 3" },
+                { id: 1, class: "Tennis", label: "Tennis" },
+                { id: 2, class: "Padel", label: "Padel", hide: false },
+                { id: 3, class: "Football", label: "Football" },
             ],
         };
     },
