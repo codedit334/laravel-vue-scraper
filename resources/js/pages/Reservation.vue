@@ -98,12 +98,15 @@ export default {
           { id: 'padel 1', class: "Padel", label: "Terrain Padel 1" },
           { id: 'padel 2', class: "Padel", label: "Terrain Padel 2" },
           { id: 'padel 3', class: "Padel", label: "Terrain Padel 3" },
+          { id: 'padel 4', class: "Padel", label: "Terrain Padel 4" },
         ];
       } else if (this.selectedSport === "tennis") {
         this.splitDays = [
           { id: "tennis 1", class: "Tennis", label: "Terrain Tennis 1" },
           { id: "tennis 2", class: "Tennis", label: "Terrain Tennis 2" },
           { id: "tennis 3", class: "Tennis", label: "Terrain Tennis 3" },
+          { id: "tennis 4", class: "Tennis", label: "Terrain Tennis 4" },
+          { id: "tennis 5", class: "Tennis", label: "Terrain Tennis 5" },
         ];
       }
     },
