@@ -57,6 +57,7 @@
             :split-days="splitDays"
             :min-cell-width="minCellWidth"
             @cell-click="createEventInSplit"
+            @ready="scrollToCurrentTime"
             sticky-split-labels
         >
             <template #split-label="{ split, view }">
@@ -78,6 +79,8 @@ export default {
     },
     data() {
         return {
+            timeCellHeight: 80, // Height of one hour in pixels
+            now: new Date(), // Get the current time
             selectedUser: "sportma", // Default selected user
             selectedSport: "football", // Default selected sport
             events: [],
@@ -157,6 +160,22 @@ export default {
                     title: `Nouvelle Reservation`,
                     class: eventClass,
                     split: event.split,
+                });
+            }
+        },
+        scrollToCurrentTime() {
+            // Access the calendar's scrollable background
+            const calendar =
+                this.$refs.vuecal2.$el.querySelector(".vuecal__bg");
+
+            // Get the current hour and minutes as a decimal (e.g., 8:30 -> 8.5)
+            const hours = 8;
+
+            // If the calendar is available, scroll to the correct time
+            if (calendar) {
+                calendar.scrollTo({
+                    top: hours * this.timeCellHeight, // Scroll to the calculated time position
+                    behavior: "smooth",
                 });
             }
         },
