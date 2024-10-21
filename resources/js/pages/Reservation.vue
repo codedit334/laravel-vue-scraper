@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top: 100px">
     <!-- Dropdown to select between Sportma and Manager -->
     <div class="user-selection">
       <label for="user">Select User:</label>
@@ -45,10 +45,10 @@
       ref="vuecal2"
       locale="fr"
       class="vuecal--green-theme"    
-      style="height: 500px; margin-top: 80px"
+      style="height: 500px; margin-bottom: 80px"
       :time-from="8 * 60"
       :time-step="30"
-      :disable-views="['years', 'week']"
+      :disable-views="['years', 'year', 'week']"
       :drag-to-create-event="false"
       show-time-in-cells
       :snap-to-time="15"
