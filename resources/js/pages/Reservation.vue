@@ -42,10 +42,9 @@ export default {
             splitDays: [
                 // The id property is added automatically if none (starting from 1), but you can set a custom one.
                 // If you need to toggle the splits, you must set the id explicitly.
-                { id: 1, class: "Tennis", label: "Tennis" },
-                { id: 2, class: "Padel", label: "Padel", hide: false },
-                { id: 3, class: "Football", label: "Football" },
-                { id: 4, class: "Basketball", label: "Basketball" },
+                { id: 1, class: "Tennis", label: "Tennis court 1" },
+                { id: 2, class: "Tennis", label: "Tennis court 2", hide: false },
+                { id: 3, class: "Tennis", label: "Tennis court 3" },
             ],
         };
     },
