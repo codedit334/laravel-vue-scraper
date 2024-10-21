@@ -89,21 +89,21 @@ export default {
     updateSplitDays() {
       if (this.selectedSport === "football") {
         this.splitDays = [
-          { id: 1, class: "Football", label: "Terrain Football 1" },
-          { id: 2, class: "Football", label: "Terrain Football 2" },
-          { id: 3, class: "Football", label: "Terrain Football 3" },
+          { id: "football 1", class: "Football", label: "Terrain Football 1" },
+          { id: "football 2", class: "Football", label: "Terrain Football 2" },
+          { id: "football 3", class: "Football", label: "Terrain Football 3" },
         ];
       } else if (this.selectedSport === "padel") {
         this.splitDays = [
-          { id: 1, class: "Padel", label: "Terrain Padel 1" },
-          { id: 2, class: "Padel", label: "Terrain Padel 2" },
-          { id: 3, class: "Padel", label: "Terrain Padel 3" },
+          { id: 'padel 1', class: "Padel", label: "Terrain Padel 1" },
+          { id: 'padel 2', class: "Padel", label: "Terrain Padel 2" },
+          { id: 'padel 3', class: "Padel", label: "Terrain Padel 3" },
         ];
       } else if (this.selectedSport === "tennis") {
         this.splitDays = [
-          { id: 1, class: "Tennis", label: "Terrain Tennis 1" },
-          { id: 2, class: "Tennis", label: "Terrain Tennis 2" },
-          { id: 3, class: "Tennis", label: "Terrain Tennis 3" },
+          { id: "tennis 1", class: "Tennis", label: "Terrain Tennis 1" },
+          { id: "tennis 2", class: "Tennis", label: "Terrain Tennis 2" },
+          { id: "tennis 3", class: "Tennis", label: "Terrain Tennis 3" },
         ];
       }
     },
