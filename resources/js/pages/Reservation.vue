@@ -45,6 +45,7 @@ export default {
                 { id: 1, class: "Tennis", label: "Tennis" },
                 { id: 2, class: "Padel", label: "Padel", hide: false },
                 { id: 3, class: "Football", label: "Football" },
+                { id: 4, class: "Basketball", label: "Basketball" },
             ],
         };
     },
@@ -58,8 +59,8 @@ export default {
 
                 // Create the new event in the correct split
                 this.$refs.vuecal2.createEvent(event.date, 120, {
-                    title: `New Event`,
-                    class: "blue-event",
+                    title: `New Reservation`,
+                    class: "green-event",
                     split: event.split, // Assign event to the correct split
                 });
                 console.log(event);
@@ -77,7 +78,7 @@ export default {
 </script>
 
 <style>
-.blue-event {
+.green-event {
     background-color: lightgreen;
     color: white;
 }
