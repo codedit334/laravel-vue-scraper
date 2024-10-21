@@ -46,7 +46,6 @@
       locale="fr"
       class="vuecal--green-theme"    
       style="height: 500px; margin-bottom: 80px"
-      :time-from="8 * 60"
       :time-step="30"
       :disable-views="['years', 'year', 'week']"
       :drag-to-create-event="false"
