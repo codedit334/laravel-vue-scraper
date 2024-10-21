@@ -112,7 +112,7 @@ export default {
         let eventClass =
           this.selectedUser === "sportma" ? "blue-event" : "green-event";
         this.$refs.vuecal2.createEvent(event.date, 120, {
-          title: `New Reservation`,
+          title: `Nouvelle Reservation`,
           class: eventClass,
           split: event.split,
         });
