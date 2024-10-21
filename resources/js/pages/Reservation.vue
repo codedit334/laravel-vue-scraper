@@ -1,23 +1,34 @@
 <template>
-    <vue-cal
-        ref="vuecal2"
-        class="vuecal--green-theme"    
-        style="height: 500px;margin-top: 80px"
-        :time-from="8 * 60"
-        :time-step="30"
-        :disable-views="['years', 'week']"
-        :drag-to-create-event="false"
-        show-time-in-cells
-        :snap-to-time="15"
-        editable-events
-        :events="events"
-        :split-days="splitDays"
-        :sticky-split-labels="stickySplitLabels"
-        :min-cell-width="minCellWidth"
-        :min-split-width="minSplitWidth"
-        @cell-click="createEventInSplit"
-    >
-    </vue-cal>
+    <div>
+        <!-- Dropdown to select between Sportma and Manager -->
+        <div class="user-selection">
+            <label for="user">Select User:</label>
+            <select v-model="selectedUser">
+                <option value="sportma">Sportma</option>
+                <option value="manager">Manager</option>
+            </select>
+        </div>
+
+        <vue-cal
+            ref="vuecal2"
+            class="vuecal--green-theme"    
+            style="height: 500px; margin-top: 80px"
+            :time-from="8 * 60"
+            :time-step="30"
+            :disable-views="['years', 'week']"
+            :drag-to-create-event="false"
+            show-time-in-cells
+            :snap-to-time="15"
+            editable-events
+            :events="events"
+            :split-days="splitDays"
+            :sticky-split-labels="stickySplitLabels"
+            :min-cell-width="minCellWidth"
+            :min-split-width="minSplitWidth"
+            @cell-click="createEventInSplit"
+        >
+        </vue-cal>
+    </div>
 </template>
 
 <script>
@@ -30,6 +41,7 @@ export default {
     },
     data() {
         return {
+            selectedUser: 'sportma', // Default selected user
             resources: [
                 { id: "tennis", label: "Tennis" },
                 { id: "padel", label: "Padel" },
@@ -40,8 +52,6 @@ export default {
             minCellWidth: 400,
             minSplitWidth: 300,
             splitDays: [
-                // The id property is added automatically if none (starting from 1), but you can set a custom one.
-                // If you need to toggle the splits, you must set the id explicitly.
                 { id: 1, class: "Tennis", label: "Tennis court 1" },
                 { id: 2, class: "Tennis", label: "Tennis court 2", hide: false },
                 { id: 3, class: "Tennis", label: "Tennis court 3" },
@@ -51,15 +61,17 @@ export default {
     methods: {
         createEventInSplit(event) {
             if (event.split) {
-                // Find the split where the event is created
                 const split = this.splitDays.find(
                     (split) => split.id === event.split
                 );
 
-                // Create the new event in the correct split
+                // Determine the class based on selected user
+                let eventClass = this.selectedUser === 'sportma' ? 'blue-event' : 'green-event';
+
+                // Create the new event in the correct split with the selected class
                 this.$refs.vuecal2.createEvent(event.date, 120, {
                     title: `New Reservation`,
-                    class: "green-event",
+                    class: eventClass, // Dynamic class
                     split: event.split, // Assign event to the correct split
                 });
                 console.log(event);
@@ -77,8 +89,19 @@ export default {
 </script>
 
 <style>
+/* Styles for the two different user types */
+.blue-event {
+    background-color: lightblue;
+    color: white;
+}
+
 .green-event {
     background-color: lightgreen;
     color: white;
+}
+
+/* Dropdown styling */
+.user-selection {
+    margin-bottom: 10px;
 }
 </style>
