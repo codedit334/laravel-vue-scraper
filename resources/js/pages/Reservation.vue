@@ -43,6 +43,7 @@
     <!-- VueCal Calendar -->
     <vue-cal
       ref="vuecal2"
+      locale="fr"
       class="vuecal--green-theme"    
       style="height: 500px; margin-top: 80px"
       :time-from="8 * 60"
